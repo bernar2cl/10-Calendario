@@ -1,0 +1,105 @@
+/*
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*/
+/* Modal */
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 999;
+}
+
+.modal-fondo {
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal {
+  background: white;
+  border-radius: 5px;
+  color: rgb(51, 51, 51);
+  display: inline;
+  max-height: 620px;
+  max-width: 500px;
+  outline: none;
+  padding: 10px;
+}
+/* FABS*/
+.fab {
+  /* 1. Dimensiones fijas para asegurar el círculo */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* 50% es suficiente para un círculo */
+
+  /* 2. Centrado perfecto del icono (+) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 3. Estilo y posición */
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  font-size: 30px;
+  background-color: #007bff; /* Color azul de tu imagen */
+  color: white;
+  border: none;
+
+  /* 4. Sombra para que "flote" (estilo Material Design) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Efecto al pasar el mouse */
+.fab:hover {
+  background-color: #0056b3;
+}
+
+.fab-danger {
+  /* 1. Dimensiones fijas para asegurar el círculo */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* 50% es suficiente para un círculo */
+
+  /* 2. Centrado perfecto del icono (+) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 3. Estilo y posición */
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  font-size: 30px;
+  color: white;
+  border: none;
+  /* 4. Sombra para que "flote" (estilo Material Design) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
