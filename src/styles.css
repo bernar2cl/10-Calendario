@@ -75,7 +75,7 @@ body {
   transition: background-color 0.3s;
 }
 
-/* Efecto al pasar el mouse */
+/* Efecto al pasar el mouse + github */
 .fab:hover {
   background-color: #0056b3;
 }
