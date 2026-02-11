@@ -8,16 +8,18 @@ import {
   FabAddNew,
   FabDelete,
 } from '../';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { localizer } from '@/helpers/calendarLocalizer.js';
 import { getMessagesES } from '@/helpers/getMessages.js';
-import { useUiStore, useCalendarStore } from '@/hooks';
+import { useUiStore, useCalendarStore, useAuthStore } from '@/hooks';
 
 const validViews = ['month', 'week', 'day', 'agenda'];
 
 export const CalendarPage = () => {
+  const { user } = useAuthStore();
   const { openDateModal } = useUiStore();
-  const { events, setActiveEvent } = useCalendarStore();
+  const { events, setActiveEvent, startLoadingEvents, clearActiveEvent } =
+    useCalendarStore();
 
   const initialView = validViews.includes(localStorage.getItem('lastView'))
     ? localStorage.getItem('lastView')
@@ -29,13 +31,14 @@ export const CalendarPage = () => {
   const eventStyleGetter = (event, start, end, isSelected) => {
     isSelected = event.id === selectedEventId;
 
+    const isMyEvent =
+      user.uid === event.user._id || user.uid === event.user.uid;
+
     const style = {
-      backgroundColor: isSelected ? '#1E90FF' : '#347CF7',
-      borderRadius: '4px',
-      opacity: 0.9,
+      backgroundColor: isMyEvent ? '#347CF7' : '#465660',
+      borderRadius: '0px',
+      opacity: 0.8,
       color: 'white',
-      border: isSelected ? '2px solid #fff' : 'none',
-      cursor: 'pointer',
     };
 
     return {
@@ -54,10 +57,18 @@ export const CalendarPage = () => {
   };
 
   const onViewChanged = (event) => {
-    console.log({ onViewChanged: event });
+    // console.log({ onViewChanged: event });
     setLastView(event);
     localStorage.setItem('lastView', event);
   };
+
+  const onSelectSlot = (event) => {
+    clearActiveEvent();
+  };
+
+  useEffect(() => {
+    startLoadingEvents();
+  }, []);
 
   return (
     <>
@@ -80,6 +91,8 @@ export const CalendarPage = () => {
         onDoubleClickEvent={onDoubleClick}
         onSelectEvent={onSelect}
         onView={onViewChanged}
+        onSelectSlot={onSelectSlot}
+        selectable={true}
       />
 
       <CalendarModal />

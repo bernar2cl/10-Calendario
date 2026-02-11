@@ -9,10 +9,10 @@ export const FabDelete = () => {
     startDeletingEvent();
   };
 
-  console.log({
-    hasEventSelected: hasEventSelected,
-    isDateModalOpen: isDateModalOpen,
-  });
+  // console.log({
+  //   hasEventSelected: hasEventSelected,
+  //   isDateModalOpen: isDateModalOpen,
+  // });
 
   return (
     <button
